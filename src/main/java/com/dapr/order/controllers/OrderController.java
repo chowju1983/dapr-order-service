@@ -31,6 +31,11 @@ public class OrderController {
 	private static final String TOPIC = "orders";
 	
 
+	/**
+	 * This method will be invoked from customer-service for demonstrating Service Invocation building block
+	 * @param orderId
+	 * @return
+	 */
 	@GetMapping(value = "/order/{orderId}", produces = MediaType.APPLICATION_JSON_VALUE)
 	public Order getOrderDetails(@PathVariable("orderId") String orderId) {
 		String SERVER_PORT = environment.getProperty("server.port") != null ? environment.getProperty("server.port")
