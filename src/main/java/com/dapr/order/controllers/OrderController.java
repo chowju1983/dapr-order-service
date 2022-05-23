@@ -36,8 +36,14 @@ public class OrderController {
 		String SERVER_PORT = environment.getProperty("server.port") != null ? environment.getProperty("server.port")
 				: "8080";
 		LOGGER.info("Current Server Port:{}", SERVER_PORT);
-
+		LOGGER.info("Returning Details for orderId {}",orderId);
 		return new Order(orderId, Arrays.asList(new Item("Puma", "Shoe", 1)), Calendar.getInstance().getTime());
+	}
+	
+	@PostMapping(value = "/order/middleware")
+	public Object verifyMiddlewareMapping(@RequestBody String requestBody) {
+		LOGGER.info("Requets Received");
+		return requestBody;
 	}
 
 	/**
@@ -67,7 +73,7 @@ public class OrderController {
 	}
 	
 
-	/**This method binds to a Kafka topic named checkout
+	/**This method binds to a Binding component named checkout
 	 * @param body
 	 * @return ResponseEntity
 	 */

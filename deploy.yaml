@@ -1,0 +1,31 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  creationTimestamp: null
+  labels:
+    app: dapr-order-service
+  name: dapr-order-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: dapr-order-service
+  strategy: {}
+  template:
+    metadata:
+      creationTimestamp: null
+      labels:
+        app: dapr-order-service
+      annotations: 
+        dapr.io/enabled: "true"
+        dapr.io/app-id: "order-service"
+        dapr.io/app-port: "9000"
+        dapr.io/enable-api-logging: "true"
+        dapr.io/config: "daprconfig"
+    spec:
+      containers:
+      - image: dapr-order-service
+        name: dapr-order-service
+        imagePullPolicy: IfNotPresent
+        resources: {}
+status: {}
